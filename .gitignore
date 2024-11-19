@@ -30,3 +30,23 @@
 *.exe
 *.out
 *.app
+
+# Simulink cache
+*.slxc
+
+# Builds
+slprj/
+
+# Local stuff
+local_stuff/
+
+# Autosave
+*.slx.autosave
+*.asv
+*.bak
+
+# Previous versions
+*.slx.r?????
+
+# Mac users says thanks
+*.DS_Store
