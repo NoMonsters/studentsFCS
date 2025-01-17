@@ -95,39 +95,41 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
 	  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_SET)			// CENTER
 	  		  {
 	  		     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
-	  		     HAL_Delay(500);
+	  		     HAL_Delay(400);
 	  		     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
-	  		     HAL_Delay(500);
+	  		     HAL_Delay(400);
 	  		  }
-	    else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) == GPIO_PIN_SET)
+	  else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) == GPIO_PIN_SET)	// LEFT
 	    {
-	    	 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);			// LEFT
+	    	 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
 	    }
-	    else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) == GPIO_PIN_SET)	//RIGHT
+	  else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2) == GPIO_PIN_SET)	//RIGHT
 	    {
 	    	 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
-		     HAL_Delay(700);
+		     HAL_Delay(1000);
 		     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
-		     HAL_Delay(150);
+		     HAL_Delay(100);
 	    }
-	    else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) == GPIO_PIN_SET)	//UP
+	  else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3) == GPIO_PIN_SET)	//UP
 	   	    {
 	    		 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
-	   		     HAL_Delay(150);
+	   		     HAL_Delay(100);
 	   		     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
-	   		     HAL_Delay(700);
+	   		     HAL_Delay(1000);
 	   	    }
-	    else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5) == GPIO_PIN_SET)	//DOWN
+	  else if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5) == GPIO_PIN_SET)	//DOWN
 	   	   	    {
 	    			 HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
-	   	   		     HAL_Delay(200);
+	   	   		     HAL_Delay(80);
 	   	   		     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
-	   	   		     HAL_Delay(200);
+	   	   		     HAL_Delay(80);
 	   	   	    }
+	  else HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
 
   }
   /* USER CODE END 3 */
@@ -195,17 +197,12 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
 
-  /*Configure GPIO pins : Center_Pin Left_Pin Right_Pin Up_Pin */
-  GPIO_InitStruct.Pin = Center_Pin|Left_Pin|Right_Pin|Up_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : Down_Pin */
-  GPIO_InitStruct.Pin = Down_Pin;
+  /*Configure GPIO pins : Left_Pin Right_Pin Up_Pin Down_Pin Center_Pin */
+  GPIO_InitStruct.Pin = Left_Pin|Right_Pin|Up_Pin|Down_Pin|Center_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(Down_GPIO_Port, &GPIO_InitStruct);
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Led_Pin */
   GPIO_InitStruct.Pin = Led_Pin;
