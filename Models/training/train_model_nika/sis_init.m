@@ -6,4 +6,6 @@ speed_tgt = 100;
 v0 = 20;
 speed_tgt_2 = 130;
 cren = 0;
-
+h0 = 1000;
+h_tgt_1 = 1100;
+h_tgt_2 = 1500;
