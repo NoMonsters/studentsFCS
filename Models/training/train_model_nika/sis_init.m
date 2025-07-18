@@ -3,7 +3,10 @@ n_y = 1;
 %n_x = 0;
 n_z = 0;
 speed_tgt = 100;
-v0 = 20;
+v0 = 50;
 speed_tgt_2 = 130;
+roll = 0;
+h0 = 1000;
+h_tgt_1 = 1100;
+h_tgt_2 = 1500;
 cren = 0;
-
